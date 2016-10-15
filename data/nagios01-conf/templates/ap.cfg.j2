@@ -1,0 +1,14 @@
+{% for host in item %}
+# -----------------
+# System Name: {{ host.name[5:] }}
+# -----------------
+define host{
+       use                     generic-switch  ; Inherit default values from a template
+       host_name               {{ host.name }} ; The name we're giving to this server
+       alias                   {{ host.name }} ; A longer name for the server
+       address                 {{ host.ip }}   ; IP address of the server
+	   hostgroups	switches		; Host groups this switch is associated with
+       contact_groups          admins
+}
+
+{% endfor %}

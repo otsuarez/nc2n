@@ -1,0 +1,10 @@
+---
+# the name of the folder in the data directory's files subdirectory where the cvs files will be stored.
+# data directory -> reponame -> files folder -> csvfiles_dir
+csvfiles_dir: csv
+# base directory where the nagios configuration directory will be. a git repository helps it would be.
+objects_basedir: workspace
+# using a filename suffix helps identify automatically generated files from the manually edited ones.
+objects_filename_suffix: _nc2n
+# the directory where the nagios configuration files will b written.
+objects_dir: "{{ objects_basedir }}/{{ reponame }}/objects"

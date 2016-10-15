@@ -1,0 +1,16 @@
+---
+#- debug: var=item
+#  with_csvrecord: "file={{ csvfiles_dir }}/ap.csv groupby=virtual_name"
+#- fail: msg="that's all fokls!"
+
+- name: generating ap conf files 
+  template: "src=ap.cfg.j2 dest={{ objects_dir }}/ap{{ objects_filename_suffix }}.cfg mode=0644"
+  with_csvrecord: "file={{ csvfiles_dir }}/ap.csv"
+  tags: 
+  - ap
+
+- name: generating virtual ap conf files 
+  template: "src=virtual_ap.cfg.j2 dest={{ objects_dir }}/virtual_ap{{ objects_filename_suffix }}.cfg mode=0644"
+  with_csvrecord: "file={{ csvfiles_dir }}/ap.csv groupby=virtual_name"
+  tags: 
+  - vap

@@ -1,0 +1,23 @@
+{% for virtual in item|groupby('virtual_name') %}
+#  Virtual AP
+define host{
+       use                     generic-switch  ; Inherit default values from a template
+       host_name               {{ virtual.grouper }}  ; The name we're giving to this server
+       alias                   {{ virtual.grouper }}  ; A longer name for the server
+       address                {% for ap in virtual.list %} {{ ap.ip }} {%- if not loop.last %},{% endif %}{% endfor %} ; IP address of the server
+}
+{% endfor %}
+{# ---
+# template
+{% set l = [{'c': 3, 'result': 1.0},
+            {'c': 3, 'result': 2.0},
+            {'c': 9, 'result': 3.0},
+            {'c': 1, 'result': 4.0}] %}
+{% for d in l|groupby('c') %}
+    {{d}}
+{% endfor %}
+# output
+    (1, [{'c': 1, 'result': 4.0}])
+    (3, [{'c': 3, 'result': 1.0}, {'c': 3, 'result': 2.0}])
+    (9, [{'c': 9, 'result': 3.0}])
+ --- #}
