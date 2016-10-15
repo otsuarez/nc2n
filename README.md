@@ -16,6 +16,16 @@ REPO=nagios01-conf
 ansible-playbook main.yml -e reponame=$REPO
 ```
 
+# Demo time
+
+```
+git clone git@github.com:otsuarez/nc2n.git 
+cd nc2n 
+make init 
+make run reponame=nagios01-conf 
+docker run --name preflight   -v `pwd`/workspace/nagios01-conf:/opt/nagios/etc toja/nagios-check:latest
+```
+
 # Directory Hierarchy
 
 ```
@@ -50,7 +60,7 @@ ansible-playbook main.yml -e reponame=$REPO
 
 # Requirements
 
-ansible
+Ansible 2.
 
 ```
 pip install ansible
