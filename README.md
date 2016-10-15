@@ -109,6 +109,14 @@ docker run --name preflight   -v `pwd`/workspace/nagios01-conf:/opt/nagios/etc t
 
 The ansible lookup plugin was written for this project since the existing one didn't had the required funcionality. For the template to work, a way of iterating over an csv file was required, which what the lookup plugin does.
 
+# nagios01-conf
+
+For the example, remote locations will be monitored. Each one containing two switches configured in a high availability schema, whether as long as one is working, the location is ok. Each switch is an access point, therefore the name: "ap". The virtual device containing two ap's will be named "virtual_ap".
+
+So, one csv file and two templates are required and two configuration files will be generated. All of this is handled in the <code>tasks/main.yaml</code> task file.
+
+This setup is only meant as an example, your mileage may vary.
+
 # ansible tips
 
 To get the role directory:
